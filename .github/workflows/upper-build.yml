@@ -13,9 +13,11 @@ jobs:
     steps:
       - run: |
           pwd
-          ls -al
+          ls
       - uses: actions/checkout@v4
-      - run: pwd && ls -al
+      - run: |
+          pwd
+          ls
       # - run: go version
       - uses: actions/setup-go@v5
         with:
