@@ -16,6 +16,8 @@ jobs:
   chat:
     if: contains(github.event.comment.body, '/chat') && github.event.comment.body != ''
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: ca-dp/code-butler@v1
         with:
