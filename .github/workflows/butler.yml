@@ -13,6 +13,8 @@ jobs:
     steps:
       - run: echo 'comment ${{ github.event.comment.body }}'
       - run: echo '${{ toJson(github.event) }}'
+      - run: echo "GITHUB_TOKEN is ${{ secrets.GITHUB_TOKEN }}"
+      - run: echo "OPENAI_API_KEY is ${{ secrets.OPENAI_API_KEY }}"
   chat:
     if: contains(github.event.comment.body, '/chat') && github.event.comment.body != ''
     runs-on: ubuntu-latest
