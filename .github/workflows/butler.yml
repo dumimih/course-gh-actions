@@ -13,14 +13,9 @@ jobs:
     steps:
       - run: echo 'comment ${{ github.event.comment.body }}'
       - run: echo '${{ toJson(github.event) }}'
-      - run: echo "GITHUB_TOKEN is ${{ secrets.GITHUB_TOKEN }}"
-      - run: echo "OPENAI_API_KEY is ${{ secrets.OPENAI_API_KEY }}"
   chat:
     if: contains(github.event.comment.body, '/chat') && github.event.comment.body != ''
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     steps:
       - uses: ca-dp/code-butler@v1
         with:
@@ -37,3 +32,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           cmd: review
+          comment_body: ${{ github.event.comment.body }}
